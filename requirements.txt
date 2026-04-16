@@ -5,3 +5,4 @@ einops
 scipy
 imageio
 imageio-ffmpeg
+matplotlib
