@@ -1,11 +1,16 @@
-FROM runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-ubuntu22.04
+FROM nvidia/cuda:12.4.1-runtime-ubuntu22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    ffmpeg git wget && \
+    python3 python3-pip ffmpeg git wget && \
+    ln -s /usr/bin/python3 /usr/bin/python && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
+
+# Install PyTorch (CUDA 12.4, runtime only — no compiler toolkit)
+RUN pip install --no-cache-dir \
+    torch==2.4.0 torchvision==0.19.0 --index-url https://download.pytorch.org/whl/cu124
 
 # Clone ProPainter
 RUN git clone --depth 1 https://github.com/sczhou/ProPainter.git /app/ProPainter
