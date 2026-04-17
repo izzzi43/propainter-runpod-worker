@@ -90,7 +90,6 @@ def handler(job):
             "--ref_stride", str(ref_stride),
             "--raft_iter", str(raft_iter),
             "--subvideo_length", str(subvideo_length),
-            "--save_frames", "False",
         ]
         if fp16:
             cmd.append("--fp16")
