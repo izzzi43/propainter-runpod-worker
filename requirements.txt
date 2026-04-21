@@ -6,3 +6,4 @@ scipy
 imageio
 imageio-ffmpeg
 matplotlib
+av>=12.0.0
